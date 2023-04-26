@@ -10,7 +10,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Welcome to metrokia!</title>
+        <title>Metrokia Things Manager</title>
       </Head>
       <>
         {pathname != '/login' && 
