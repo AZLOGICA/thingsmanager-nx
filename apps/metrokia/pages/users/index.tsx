@@ -3,7 +3,7 @@ import React, { useCallback , useRef } from 'react'
 import { Table, Title } from '@thingsmanager-nx/common-ui';
 import { useAppSelector, useAppDispatch, startLoadingUsers, startSetUsersData, startSetUsersDataByPage} from '@thingsmanager-nx/store'
 import { usersColumns } from './usersColumns';
-export const UsersPage = () => {
+function UsersPage() {
 
     const {  isLoading, totalCount, data, dataByPage} = useAppSelector(state => state.users)
     const fetchIdRef = useRef(0)
@@ -45,3 +45,5 @@ export const UsersPage = () => {
         </div>
     )
 }
+
+export default UsersPage;

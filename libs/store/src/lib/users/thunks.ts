@@ -1,11 +1,7 @@
 import { GRAPHQL_AUTH_MODE } from '@aws-amplify/api';
 import { AppThunk } from "../store";
 import { API } from "aws-amplify";
-import * as queries from "../../graphql/queries";
-import * as mutations from "../../graphql/mutations";
-import { GraphQLQuery } from '@aws-amplify/api';
-import { APPSYNC_HEADERS } from '../../aws/appSyncHeader';
-import { getJwtToken } from "../../utils/aws/getToken";
+import { getUsers } from "@thingsmanager-nx/graphql/metrokia-graphql";
 import { loadingUsers, setUsers, setUsersData, setUsersDataByPage } from './usersSlice';
 
 
@@ -23,10 +19,10 @@ export const startLoadingUsers =
 
     console.log("variables", variables);
 
-    const allItems = await API.graphql<GraphQLQuery<GetAllOrdersQuery>>({
-      query: queries.getAllOrders,
+    const allItems: any = await API.graphql({
+      query: getUsers,
       variables
-    },APPSYNC_HEADERS);
+    });
     console.log("allProducts", allItems)
    
     let items: any = [];
@@ -34,13 +30,13 @@ export const startLoadingUsers =
     let newCursor = null;
     let hasMore = null;
 
-    if (allItems.data?.getAllOrders?.orders) {
-      newCursor = allItems.data.getAllOrders.cursor;
-      if(allItems.data?.getAllOrders?.totalCount != null) totalCount = allItems.data?.getAllOrders?.totalCount
-      allItems.data.getAllOrders.orders.map((customer) => {
-        items.push(customer)
+    if (allItems.data?.getUsers?.users) {
+      newCursor = allItems.data.getUsers.cursor;
+      if(allItems.data?.getUsers?.totalCount != null) totalCount = allItems.data?.getUsers?.totalCount
+      allItems.data.getUsers.users.map((item: any) => {
+        items.push(item)
       })
-      if (allItems.data.getAllOrders.orders.length < 10) hasMore = false;
+      if (allItems.data.getUsers.users.length < 10) hasMore = false;
       else hasMore = true;
     }
    

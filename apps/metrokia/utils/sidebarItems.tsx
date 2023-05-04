@@ -1,4 +1,4 @@
-import { AiOutlineHome, AiOutlineSetting, AiOutlineUser, AiOutlineVideoCamera } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineUsergroupDelete, AiOutlineUser, AiOutlineVideoCamera } from "react-icons/ai";
 
 const iconSize = '1.3em'
 
@@ -9,9 +9,9 @@ export const sidebarItems = [
       icon: <AiOutlineHome size={iconSize} />
     },
     {
-      name: "Dispositivos",
-      link: "/devices",
-      icon: <AiOutlineVideoCamera size={iconSize} />
+      name: "Usuarios",
+      link: "/users",
+      icon: <AiOutlineUsergroupDelete size={iconSize} />
     },
     {
       name: "Administración",
