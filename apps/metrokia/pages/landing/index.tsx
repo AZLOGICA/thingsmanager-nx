@@ -2,7 +2,8 @@ import { LandingCard, LandingHeader } from '@thingsmanager-nx/common-ui'
 import React from 'react'
 
 
-function Landing() {
+function Landing(props) {
+
   return (
     <div className='p-8'>
       <LandingHeader
