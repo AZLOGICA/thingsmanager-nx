@@ -1,8 +1,36 @@
 import React, { useCallback , useRef } from 'react'
 
-import { Table, Title } from '@thingsmanager-nx/common-ui';
+import { Table, TableTitleGender, TableTitleTimestamp, Title } from '@thingsmanager-nx/common-ui';
 import { useAppSelector, useAppDispatch, startLoadingPersons, startSetPersonsData, startSetPersonsDataByPage, } from '@thingsmanager-nx/store'
-import { personsColumns } from './personsColumns';
+const personsColumns = [
+    {
+      Header: 'Usuarios',
+      columns: [
+        /*
+        {
+          Header: 'Id',
+          accessor: 'guid',
+        },
+        */
+        {
+          Header: 'Nombre',
+          accessor: 'name',
+        },
+        {
+          Header: 'Género',
+          accessor: 'gender',
+          Cell: TableTitleGender,
+        },
+  
+        {
+          Header: 'Fecha de creación',
+          accessor: 'created_ts',
+          Cell: TableTitleTimestamp,
+        },
+        
+      ],
+    },
+  ];
 function UsersPage() {
 
     const {  isLoading, totalCount, data, dataByPage} = useAppSelector(state => state.persons)

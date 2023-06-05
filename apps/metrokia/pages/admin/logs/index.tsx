@@ -1,9 +1,42 @@
 import React, { useCallback , useRef } from 'react'
 
-import { Table, Title } from '@thingsmanager-nx/common-ui';
+import { Table, TableTitleImageBuffer, TableTitlePersons, TableTitleTimestamp, Title } from '@thingsmanager-nx/common-ui';
 import { useAppSelector, useAppDispatch,  startLoadingLogs, startSetLogsData, startSetLogsDataByPage, } from '@thingsmanager-nx/store'
-import { logsColumns } from './logsColumns';
-
+const logsColumns = [
+    {
+      Header: 'Logs',
+      columns: [
+  /*
+        {
+          Header: 'Fecha de evento',
+          accessor: 'ts_appeared',
+        },*/
+        {
+          Header: 'Fecha de evento',
+          accessor: 'ts_appeared',
+          Cell: TableTitleTimestamp,
+        },
+        {
+          Header: 'Personas identificadas',
+          accessor: 'persons',
+          Cell: TableTitlePersons,
+        },
+        
+        {
+          Header: 'Imagen',
+          accessor: 'image',
+          Cell: TableTitleImageBuffer,
+        },
+       /* {
+          Header: 'Imagen',
+          accessor: 'fir',
+          Cell: TableTitleImageBuffer,
+        },
+  */
+        
+      ],
+    },
+  ]
 function LogsPage() {
 
     const {  isLoading, totalCount, data, dataByPage} = useAppSelector(state => state.logs)
