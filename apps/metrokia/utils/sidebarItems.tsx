@@ -1,21 +1,27 @@
-import { AiOutlineHome, AiOutlineUsergroupDelete, AiOutlineUser, AiOutlineVideoCamera } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineOrderedList, AiOutlineUsergroupDelete, AiOutlineUser, AiOutlineVideoCamera } from "react-icons/ai";
 
 const iconSize = '1.3em'
 
 export const sidebarItems = [
     {
       name: "Inicio",
-      link: "/landing",
+      link: "/admin/landing",
       icon: <AiOutlineHome size={iconSize} />
     },
     {
       name: "Usuarios",
-      link: "/users",
+      link: "/admin/persons",
       icon: <AiOutlineUsergroupDelete size={iconSize} />
     },
     {
+      name: "Logs",
+      link: "/admin/logs",
+      icon: <AiOutlineOrderedList size={iconSize} />
+    },
+   /* {
       name: "Administración",
-      link: "/admin",
+      link: "/admin/admin",
       icon: <AiOutlineUser size={iconSize} />
-    }
+     
+    } */
   ]

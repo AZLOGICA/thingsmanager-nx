@@ -28,9 +28,12 @@ export const Table = ({
     state: { pageIndex, pageSize },
   } = useTable(
     {
+      pageSize: 50,
       columns,
       data,
-      initialState: { pageIndex: 0 },
+      initialState: {  pageSize: 50, pageIndex: 0 ,  pagination: {
+        pageSize: 50,
+    },},
       manualPagination: true,
       pageCount: controlledPageCount,
     },
@@ -52,7 +55,7 @@ export const Table = ({
   return (
     <>
 
-      <table className="table w-full rounded-xl border-lg shadow-lg" {...getTableProps()}>
+      <table className="table w-full rounded-xl border-lg shadow-lg !z-[0]" {...getTableProps()}>
         <thead>
           {headerGroups.map(headerGroup => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -133,14 +136,14 @@ export const Table = ({
         <button
           className="btn btn-square  btn-sm bg-slate-800"
           onClick={() => previousPage()}
-          disabled={!canPreviousPage}
+          disabled={!canPreviousPage || loading}
         >
           {"<"}
         </button>{" "}
         <button
           className="btn btn-square  btn-sm bg-slate-800"
           onClick={() => nextPage()}
-          disabled={!canNextPage}
+          disabled={!canNextPage || loading}
         >
           {">"}
         </button>

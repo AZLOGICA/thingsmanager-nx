@@ -10,6 +10,15 @@ export const config = {
 
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
+
+  const token = request.cookies.get("token");
+
+  console.log("request", request)
+
+  if (token === undefined && request.nextUrl.pathname !== "/auth/login" ) {
+    return NextResponse.redirect(new URL("/auth/login", request.url));
+  }
+
   return NextResponse.next()
 }
  

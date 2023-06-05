@@ -1,3 +1,5 @@
+import path from 'path';
+path.resolve('./next.config.js');
 import styles from "./index.module.css";
 import { Navbar } from '@thingsmanager-nx/common-ui'
 export function Index() {

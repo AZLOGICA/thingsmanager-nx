@@ -1,12 +1,18 @@
 import { configureStore, ThunkAction, AnyAction, combineReducers } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { createWrapper } from "next-redux-wrapper";
-import { usersSlice } from "./users/usersSlice";
+import { personsSlice } from "./persons/personsSlice";
+import { authSlice } from "./auth/authSlice";
+import storage from 'redux-persist/lib/storage' 
+import { logsSlice } from "./logs/logsSlice";
+import { dashboardSlice } from "./dashboard/dashboardSlice";
 
 const combinedReducer = combineReducers({
-  users: usersSlice.reducer
+  persons: personsSlice.reducer,
+  auth: authSlice.reducer,
+  logs: logsSlice.reducer,
+  dashboard: dashboardSlice.reducer
 });
-
 
 //const persistedReducer = persistReducer(persistConfig, combinedReducer)
 
@@ -47,9 +53,12 @@ export const store = configureStore({
 });
 */
 
-const makeStore = () => store
-/*
-const makeStore = ({ isServer }: any) => {
+//const makeStore = () => store
+
+const makeStore = () => {
+
+  const isServer = typeof window === 'undefined';
+
   if (isServer) {
     //If it's on server side, create a store
     return store;
@@ -59,7 +68,7 @@ const makeStore = ({ isServer }: any) => {
 
     const persistConfig = {
       key: 'root',
-      whitelist: ['cart'], // only counter will be persisted, add other reducers if needed
+      whitelist: ['auth'], // only counter will be persisted, add other reducers if needed
       storage, // if needed, use a safer storage
     };
 
@@ -74,7 +83,7 @@ const makeStore = ({ isServer }: any) => {
     return store;
   }
 };
-*/
+
 
 
 

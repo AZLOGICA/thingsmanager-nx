@@ -48,8 +48,8 @@ export function Sidebar({sidebarItems}: SidebarProps) {
     <div className="sticky inset-x-0 bottom-0 border-t border-sidebarSecondary/30  p-2">
       <form action="/logout">
         <SidebarItem
-         active={'/settings' === pathname}
-          link={'/settings'}
+         active={'/admin/settings' === pathname}
+          link={'/admin/settings'}
           icon={<AiFillSetting size={iconSize} />}
           name='Configuración'
         />

@@ -6,9 +6,10 @@ export interface LoginProps {
   title: string;
   description:string;
   onSubmit:  (data: any) => void
+  loading: boolean;
 }
 
-export function LoginLayout({title, description, onSubmit}: LoginProps) {
+export function LoginLayout({title, description, onSubmit, loading}: LoginProps) {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
   return (

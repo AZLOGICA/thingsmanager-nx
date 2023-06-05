@@ -1,1 +1,1 @@
-export * from './lib/default-graphql';
+export * from './lib/mutations/login';
