@@ -1,89 +1,107 @@
-import { Button, Title } from '@thingsmanager-nx/common-ui'
-import React from 'react'
+import React, { useCallback, useRef } from 'react';
 
-function Admin() {
+import {
+  Button,
+  Table,
+  TableTitleImageBuffer,
+  TableTitlePersons,
+  TableTitleTimestamp,
+  Title,
+} from '@thingsmanager-nx/common-ui';
+import {
+  useAppSelector,
+  useAppDispatch,
+  startLoadingUsers,
+  startSetUsersData,
+  startSetUsersDataByPage,
+} from '@thingsmanager-nx/store';
+import TableTitleGoTo from 'libs/common-ui/src/lib/table/components/TableTitleGoTo';
+const usersColumns = [
+  {
+    Header: 'Usuarios',
+    columns: [
+      {
+        Header: 'Email',
+        accessor: 'id',
+      },
+
+      {
+        Header: 'Nombre',
+        accessor: 'name',
+      },
+      {
+        Header: "Acción",
+        editRoute: '/admin/admin/edit/',
+        accessor: "moreInfo",
+        Cell: TableTitleGoTo,
+        disableSortBy: true,
+        disableFilters: true,
+      },
+    ],
+  },
+];
+function AdminPage() {
+  const { isLoading, totalCount, data, dataByPage } = useAppSelector(
+    (state) => state.users
+  );
+  const fetchIdRef = useRef(0);
+  const dispatch = useAppDispatch();
+
+  const loadMoreData = async () => {
+    console.log('loadMoreData');
+    const rr = await dispatch(startLoadingUsers());
+    return rr;
+  };
+
+  const fetchData = useCallback(
+    async ({
+      pageSize,
+      pageIndex,
+    }: {
+      pageSize: number;
+      pageIndex: number;
+    }) => {
+      console.log('fetchData');
+      if (dataByPage[pageIndex]) {
+        await dispatch(startSetUsersData(dataByPage[pageIndex]));
+        return;
+      } else {
+        const fetchId = ++fetchIdRef.current;
+        if (fetchId === fetchIdRef.current) {
+          const newData: any = await loadMoreData();
+          await dispatch(startSetUsersDataByPage(newData, pageIndex));
+          await dispatch(startSetUsersData(newData));
+        }
+      }
+    },
+    [dataByPage]
+  );
+
   return (
     <div>
-      <div className='flex pb-6 '>
-        <div className='w-5/6 items-center'>
-          <Title title='Administración' />
+      <div className="flex pb-6 ">
+        <div className="w-5/6 items-center">
+          <Title title="Usuarios" />
         </div>
-        <div className='w-1/6'>
+        <div className="w-1/6">
           <Button
-          
-            title='Añadir Usuario'
-            link={'/admin/newUser'}
-            animation='scale'
+            title="Añadir Usuario"
+            link={'/admin/admin/new'}
+            animation="scale"
           />
         </div>
       </div>
 
-
-      <div className="overflow-x-auto bg-tableBackground shadow-md p-7">
-        <table className="min-w-full divide-y-2 divide-gray-200 text-sm">
-          <thead>
-            <tr>
-              <th
-                className="whitespace-nowrap px-4 py-2 text-left font-medium text-tableText"
-              >
-                Usuario
-              </th>
-              <th
-                className="whitespace-nowrap px-4 py-2 text-left font-medium  text-tableText"
-              >
-                Rol
-              </th>
-              <th
-                className="whitespace-nowrap px-4 py-2 text-left font-medium  text-tableText"
-              >
-                Estado
-              </th>
-
-              <th className="px-4 py-2"></th>
-            </tr>
-          </thead>
-
-          <tbody className="divide-y divide-gray-200">
-            <tr>
-              <td className="whitespace-nowrap px-4 py-2 font-medium  text-tableText">
-                John Doe
-              </td>
-              <td className="whitespace-nowrap px-4 py-2  text-tableText">Admin</td>
-              <td className="whitespace-nowrap px-4 py-2  text-tableText">Activo</td>
-
-              <td className="whitespace-nowrap px-4 py-2">
-                <Button
-                  size='xs'
-             
-                  title='Editar'
-                  link={'/admin/newUser'}
-                  animation='swapColor'
-                />
-              </td>
-            </tr>
-            <tr>
-              <td className="whitespace-nowrap px-4 py-2 font-medium  text-tableText">
-                John Doe
-              </td>
-              <td className="whitespace-nowrap px-4 py-2  text-tableText">Admin</td>
-              <td className="whitespace-nowrap px-4 py-2  text-tableText">Activo</td>
-
-              <td className="whitespace-nowrap px-4 py-2">
-                <Button
-                  size='xs'
-          
-                  title='Editar'
-                  link={'/admin/newUser'}
-                  animation='swapColor'
-                />
-              </td>
-            </tr>
-
-          </tbody>
-        </table>
-      </div>
+      <Table
+        columns={usersColumns}
+        data={data}
+        fetchData={fetchData}
+        loading={isLoading}
+        totalSize={totalCount ? totalCount : 0}
+        pageCount={totalCount ? Math.ceil(totalCount / 20) : 0}
+      />
     </div>
-  )
+  );
 }
 
-export default Admin
+export default AdminPage;

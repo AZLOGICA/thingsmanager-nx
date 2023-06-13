@@ -18,10 +18,10 @@ export const sidebarItems = [
       link: "/admin/logs",
       icon: <AiOutlineOrderedList size={iconSize} />
     },
-   /* {
+   {
       name: "Administración",
       link: "/admin/admin",
       icon: <AiOutlineUser size={iconSize} />
      
-    } */
+    } 
   ]

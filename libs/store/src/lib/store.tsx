@@ -6,12 +6,14 @@ import { authSlice } from "./auth/authSlice";
 import storage from 'redux-persist/lib/storage' 
 import { logsSlice } from "./logs/logsSlice";
 import { dashboardSlice } from "./dashboard/dashboardSlice";
+import { usersSlice } from "./users/usersSlice";
 
 const combinedReducer = combineReducers({
   persons: personsSlice.reducer,
   auth: authSlice.reducer,
   logs: logsSlice.reducer,
-  dashboard: dashboardSlice.reducer
+  dashboard: dashboardSlice.reducer,
+  users: usersSlice.reducer
 });
 
 //const persistedReducer = persistReducer(persistConfig, combinedReducer)

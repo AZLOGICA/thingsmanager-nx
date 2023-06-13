@@ -6,9 +6,10 @@ interface Props {
     name: string;
     link: string;
     active: boolean;
+    className?: string;
 }
 
-function SidebarItem({ icon, name , link, active}: Props) {
+function SidebarItem({ icon, name , link, active, className}: Props) {
     return (
         <Link
             href={link}
@@ -16,6 +17,7 @@ function SidebarItem({ icon, name , link, active}: Props) {
             my-2
              px-2 py-1.5 text-sidebarSecondary  bg-sidebarPrimary/20
              ${active && '!bg-sidebarSecondary !text-sidebarPrimary'}
+             ${className}
              `}
         >
             {icon}

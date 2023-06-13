@@ -4,6 +4,7 @@ export * from './lib/table/components/TableTitleGender';
 export * from './lib/table/components/TableTitleTimestamp';
 export * from './lib/table/components/TableTitleImageBuffer';
 export * from './lib/table/components/TableTitlePersons';
+export * from './lib/table/components/TableTitleGoTo';
 export * from './lib/common-ui';
 export * from './lib/navbar/navbar';
 export * from './lib/sidebar/sidebar';

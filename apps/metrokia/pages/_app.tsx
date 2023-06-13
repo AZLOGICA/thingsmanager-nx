@@ -8,6 +8,9 @@ import { wrapper } from '@thingsmanager-nx/store';
 import { Amplify } from 'aws-amplify';
 import {ReactReduxContext} from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
+import { ToastContainer } from "react-toastify";
+
+import 'react-toastify/dist/ReactToastify.css';
 
 /*
 Amplify.configure({
@@ -23,6 +26,7 @@ Amplify.configure({
   aws_user_pools_web_client_id: '3j34t8hqiqa645bvte0j1eb9bj',
 });
 */
+
 Amplify.configure({
   aws_appsync_graphqlEndpoint:
     'https://cssqpjv2kvgalk533ttbhufetm.appsync-api.us-east-1.amazonaws.com/graphql',
@@ -35,6 +39,7 @@ Amplify.configure({
   aws_user_pools_id: 'us-east-1_XdtAyBs5j',
   aws_user_pools_web_client_id: '1ul4sm42rfasdg85elb8kguj8b',
 });
+
 
 
 function CustomApp({ Component, ...rest }: AppProps) {
@@ -60,6 +65,9 @@ function CustomApp({ Component, ...rest }: AppProps) {
                       <Component {...pageProps} />
                     </div>
                   </div>
+
+                  <ToastContainer />
+                  
                 </>
             </PersistGate>
           )}

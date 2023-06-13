@@ -66,6 +66,11 @@ function Landing(props) {
           description={'Usuarios'}
           link={'/admin/persons'}
         />
+        <LandingCard
+          title={'Administrador'}
+          description={'Administración de usuarios de la plataforma'}
+          link={'/admin/admin'}
+        />
       </div>
       <div className="my-8">
         <Title title="Dashboard" />

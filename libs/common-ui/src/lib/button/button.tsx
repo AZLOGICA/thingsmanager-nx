@@ -34,9 +34,10 @@ export function Button({
   duration-200
   ${backgroundColor ? backgroundColor : 'bg-gradient-to-r from-buttonPrimary  to-buttonSecondary'}
   text-center items-center
-  text-buttonText
+
   w-fit
   cursor-pointer
+  text-buttonText
   ${size}
   ${animation && animation == 'scale' && 'hover:scale-105'}
   ${animation && animation == 'swapColor' && 'hover:to-buttonPrimary'}
@@ -61,7 +62,7 @@ export function Button({
 }
 
 function ButtonSpan({ title }: { title: string }) {
-  return <span className="block rounded-sm  font-medium ">{title}</span>;
+  return <span className="block rounded-sm  font-medium    !text-buttonText">{title}</span>;
 }
 
 export default Button;

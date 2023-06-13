@@ -22,7 +22,8 @@
       "@thingsmanager-nx/graphql/metrokia-graphql": [
         "libs/graphql/metrokia-graphql/src/index.ts"
       ],
-      "@thingsmanager-nx/store": ["libs/store/src/index.ts"]
+      "@thingsmanager-nx/store": ["libs/store/src/index.ts"],
+      "@thingsmanager-nx/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
