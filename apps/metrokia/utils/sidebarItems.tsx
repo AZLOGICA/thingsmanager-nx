@@ -1,4 +1,4 @@
-import { AiOutlineHome, AiOutlineOrderedList, AiOutlineUsergroupDelete, AiOutlineUser, AiOutlineVideoCamera } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineOrderedList, AiOutlineUsergroupDelete, AiOutlineUser, AiOutlineVideoCamera, AiFillFileText, AiOutlineFileText } from "react-icons/ai";
 
 const iconSize = '1.3em'
 
@@ -18,6 +18,12 @@ export const sidebarItems = [
       link: "/admin/logs",
       icon: <AiOutlineOrderedList size={iconSize} />
     },
+    {
+      name: "Reportes",
+      link: "/admin/reports",
+      icon: <AiOutlineFileText size={iconSize} />
+    },
+
    {
       name: "Administración",
       link: "/admin/admin",

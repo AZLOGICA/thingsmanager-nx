@@ -66,6 +66,12 @@ function Landing(props) {
           description={'Usuarios'}
           link={'/admin/persons'}
         />
+          <LandingCard
+          title={'Reportes'}
+          description={'Reportes de la plataforma'}
+          link={'/admin/reports'}
+        />
+
         <LandingCard
           title={'Administrador'}
           description={'Administración de usuarios de la plataforma'}
