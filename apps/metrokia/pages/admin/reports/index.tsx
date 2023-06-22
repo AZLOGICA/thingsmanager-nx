@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 
 function ReportsPage() {
   const Report = dynamic(() =>
-  import('./Report').then((dashboard) => dashboard.default),
+  import('../../../components/Report').then((dashboard) => dashboard.default),
 );
 
 
